@@ -9,9 +9,22 @@
                 <h1 class="text-2xl font-normal">Bernardo Camilo Ferrari</h1>
             </div>
 
-            <div class="bg-red-200 p-4 border-b">
-                <h1 class="text-2xl font-semibold">Invoice</h1>
-                <p class="text-gray-500">Invoice #INV1234</p>
+            <div class="flex flex-col w-1/2 p-2">
+              <div class= "flex">
+                  <h1 class="text-2xl font-semibold mr-2">Invoice:</h1>
+                  <input class="text-gray-500 w-1/2" placeholder="Invoice #INV1234" type="text" />
+              </div>
+
+              <div>
+                <div>
+                  <p>Issue date: </p>
+                  <input type="date" />
+                </div>
+                <div>
+                  <p>Due by: </p>
+                  <input type="date" />
+                </div>
+              </div>
             </div>
         </header>
         
