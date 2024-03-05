@@ -1,5 +1,8 @@
 <script>
   import { clientInfo } from "../stores";
+  function handleValues() {
+    console.log($clientInfo)
+  }
 </script>
 
 <div class="container mx-auto m-4 w-[45vw]">
@@ -27,25 +30,25 @@
                   <div>
                     <label class="flex flex-col">
                       Company name:
-                      <input type="text" class="bg-gray-200" bind:value={$clientInfo.companyName}>
+                      <input type="text" placeholder="Google" class="bg-gray-200" bind:value={$clientInfo.companyName}>
                     </label>
                   </div>
                   <div>
                     <label class="flex flex-col">
                       Street adress:
-                      <input type="text" class="bg-gray-200" bind:value={$clientInfo.streetAdress}>
+                      <input type="text" placeholder="10 Downing Street" class="bg-gray-200" bind:value={$clientInfo.streetAdress}>
                     </label>
                   </div>
                   <div>
                     <label class="flex flex-col">
                       Provice & country:
-                      <input type="text" class="bg-gray-200" bind:value={$clientInfo.location}>
+                      <input type="text" placeholder="Buenos Aires, Argentina" class="bg-gray-200" bind:value={$clientInfo.location}>
                     </label>
                   </div>
                   <div>
                     <label class="flex flex-col">
                       Representative email:
-                      <input type="text" class="bg-gray-200" bind:value={$clientInfo.representativeEmail}>
+                      <input type="email" placeholder="john.doe@gmail.com" class="bg-gray-200" bind:value={$clientInfo.representativeEmail}>
                     </label>
                   </div>
               </div>
