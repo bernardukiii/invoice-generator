@@ -1,5 +1,5 @@
 <script>
-  import { clientInfo } from "../stores";
+  import { clientInfo, invoiceInfo, invoiceData } from "../stores";
   function handleValues() {
     console.log($clientInfo)
   }
