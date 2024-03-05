@@ -3,9 +3,9 @@
 </script>
 
 <div class="container mx-auto m-4 w-[45vw]">
-    <div class="w-full p-4 bg-white rounded-lg shadow-md overflow-hidden">
+    <div class="w-full p-8 bg-white rounded-lg shadow-md overflow-hidden">
       <header class="flex justify-between mb-4" >
-        <div class="p-4">
+        <div>
           <h1 class="text-2xl font-normal mb-2">Bernardo Camilo Ferrari</h1>
 
           <div>
@@ -19,7 +19,7 @@
           </div>
         </div>
 
-        <div class="flex flex-col p-2">
+        <div class="flex flex-col">
           <div class= "flex justify-end mb-2">
             <div>
               <h2 class="text-lg font-semibold">Client details</h2>
