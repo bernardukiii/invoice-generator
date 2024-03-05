@@ -1,5 +1,5 @@
 <script>
-    
+
 </script>
 
 <div class="container mx-auto m-4 w-[45vw]">
@@ -24,30 +24,30 @@
             <div>
               <h2 class="text-lg font-semibold">Client details</h2>
               <div class="flex flex-col">
-                <div>
-                  <label class="flex flex-col">
-                    Company name:
-                    <input type="text" class="">
-                  </label>
-                </div>
-                <div>
-                  <label class="flex flex-col">
-                    Street adress:
-                    <input type="text" class="">
-                  </label>
-                </div>
-                <div>
-                  <label class="flex flex-col">
-                    Provice & country:
-                    <input type="text" class="">
-                  </label>
-                </div>
-                <div>
-                  <label class="flex flex-col">
-                    Representative email:
-                    <input type="text" class="">
-                  </label>
-                </div>
+                  <div>
+                    <label class="flex flex-col">
+                      Company name:
+                      <input type="text" class="bg-gray-200">
+                    </label>
+                  </div>
+                  <div>
+                    <label class="flex flex-col">
+                      Street adress:
+                      <input type="text" class="bg-gray-200">
+                    </label>
+                  </div>
+                  <div>
+                    <label class="flex flex-col">
+                      Provice & country:
+                      <input type="text" class="bg-gray-200">
+                    </label>
+                  </div>
+                  <div>
+                    <label class="flex flex-col">
+                      Representative email:
+                      <input type="text" class="bg-gray-200">
+                    </label>
+                  </div>
               </div>
             </div>
           </div>
