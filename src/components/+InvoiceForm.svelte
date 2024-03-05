@@ -1,5 +1,5 @@
 <script>
-
+  import { clientInfo } from "../stores";
 </script>
 
 <div class="container mx-auto m-4 w-[45vw]">
@@ -27,25 +27,25 @@
                   <div>
                     <label class="flex flex-col">
                       Company name:
-                      <input type="text" class="bg-gray-200">
+                      <input type="text" class="bg-gray-200" bind:value={$clientInfo.companyName}>
                     </label>
                   </div>
                   <div>
                     <label class="flex flex-col">
                       Street adress:
-                      <input type="text" class="bg-gray-200">
+                      <input type="text" class="bg-gray-200" bind:value={$clientInfo.streetAdress}>
                     </label>
                   </div>
                   <div>
                     <label class="flex flex-col">
                       Provice & country:
-                      <input type="text" class="bg-gray-200">
+                      <input type="text" class="bg-gray-200" bind:value={$clientInfo.location}>
                     </label>
                   </div>
                   <div>
                     <label class="flex flex-col">
                       Representative email:
-                      <input type="text" class="bg-gray-200">
+                      <input type="text" class="bg-gray-200" bind:value={$clientInfo.representativeEmail}>
                     </label>
                   </div>
               </div>
