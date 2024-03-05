@@ -1,8 +1,6 @@
 <script>
-  import { clientInfo, invoiceInfo, invoiceData } from "../stores";
-  function handleValues() {
-    console.log($clientInfo)
-  }
+  import { clientInfo, invoiceInfo, invoiceData } from "../stores"
+
 </script>
 
 <div class="container mx-auto m-4 w-[45vw]">
@@ -63,18 +61,18 @@
             <div class="w-full flex flex-col items-end">
               <div class="flex">
                 <p class="mr-2">Issue date: </p>
-                <input type="date" />
+                <input type="date" bind:value={$invoiceInfo.issueDate} />
               </div>
               <div class="flex">
                 <p >Due by: </p>
-                <input type="date" />
+                <input type="date" bind:value={$invoiceInfo.dueDate} />
               </div>
             </div>
           </div>
 
           <div class="flex items-center">
             <h1 class="text-xl font-semibold mr-2">Invoice:</h1>
-            <input class="w-1/2 text-gray-500 bg-gray-200" placeholder="Invoice #INV1234" type="text" />
+            <input class="w-1/2 text-gray-500 bg-gray-200" placeholder="001" type="text" bind:value={$invoiceInfo.invoiceNumber} />
           </div>
         </div>
 
@@ -90,20 +88,42 @@
             </thead>
             <tbody>
               <tr>
-                <td class="border px-4 py-2">Front End Development</td>
-                <td class="border px-4 py-2">2</td>
-                <td class="border px-4 py-2">$50.00</td>
-                <td class="border px-4 py-2">$100.00</td>
+                <td class="border px-4 py-2 max-w-12">
+                  <div>
+                    <input type="text" placeholder="Front End Developer" class="bg-gray-200" bind:value={$invoiceData.specification} >
+                  </div>
+                </td>
+                <td class="max-w-6 border px-4 py-2 items-center">
+                  <div class="flex justify-center items-center">
+                    <input type="number" min="0" max="10" placeholder="5" class="max-w-[50%] bg-gray-200 text-center" bind:value={$invoiceData.quantity}>
+                  </div>
+                  
+                </td>
+                <td class="border px-4 py-2 max-w-20">
+                  <div class="flex justify-center items-center">
+                    <select class="bg-gray-200 mr-2" bind:value={$invoiceData.currency}>
+                      <option value="usd">USD</option>
+                      <option value="eur">EUR</option>
+                    </select>
+                    <input type="number" min="0" placeholder="2.500" class=" bg-gray-200 max-w-[70%] text-center" bind:value={$invoiceData.unitPrice} >
+                  </div>
+                </td>
+                <td class="border px-4 py-2">
+                  {#if $invoiceData.currency = 'usd'}
+                    <span>$</span>
+                  {:else if $invoiceData.currency = 'eur'}
+                    <span>€</span> 
+                  {/if}
+                  <span>{$invoiceData.total}</span>
+                </td>
               </tr>
-              <!-- Add more rows for additional services -->
             </tbody>
           </table>
         </section>
 
         <footer class="flex justify-end">
           <div class="text-right">
-            <p class="text-lg font-semibold mb-2">Total: $100.00</p>
-            <p class="text-gray-500">Amount Due: $100.00</p>
+            <p class="text-lg font-semibold mb-2">Total: {$invoiceData.total}</p>
           </div>
         </footer>
       </div>
