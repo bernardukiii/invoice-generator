@@ -1,5 +1,8 @@
 <script>
-    import InvoiceForm from "../components/+InvoiceForm.svelte";
+    import InvoiceForm from "../components/+InvoiceForm.svelte"
+    import InvoicePreview from "../components/+InvoicePreview.svelte"
+
+    let isPreview = false
 </script>
 
 <main class="p-4 m-4">
@@ -9,7 +12,6 @@
     </header>
 
     <section class="w-full">
-        <InvoiceForm />
+        <svelte:component this={isPreview ? InvoicePreview : InvoiceForm } />
     </section>
-
 </main>
