@@ -17,7 +17,8 @@ export const invoiceInfo = writable({
 export const invoiceData = writable({
     specification: '',
     quantity: '',
-    currency: 'eur',
+    currency: 'usd',
     unitPrice: '',
+    tax: '',
     total: ''
 })
