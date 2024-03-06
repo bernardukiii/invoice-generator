@@ -14,11 +14,14 @@ export const invoiceInfo = writable({
     dueDate: ''
 })
 
-export const invoiceData = writable({
-    specification: '',
-    quantity: '',
-    currency: 'usd',
-    unitPrice: '',
-    tax: '',
-    total: ''
-})
+export const invoiceProducts = writable([
+    {
+        specification: '',
+        quantity: '',
+        currency: 'usd',
+        unitPrice: '',
+        tax: '',
+    }
+])
+
+// I need to write up a derived store from invoiceProducts to get the sum of all the product objects

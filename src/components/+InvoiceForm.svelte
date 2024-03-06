@@ -1,6 +1,10 @@
 <script>
-	import { clientInfo, invoiceInfo, invoiceData } from '../stores';
-	let selectedCurrency = $state($invoiceData.currency);
+	import { clientInfo, invoiceInfo, invoiceProducts } from '../stores'
+	
+	const handleAddProduct = () => {
+		alert('I do nothing for now')
+		// Add product/service
+	}
 </script>
 
 <div class="container mx-auto m-4 w-[45vw]">
@@ -103,82 +107,92 @@
 
 			<section>
 				<table class="w-full mb-8">
-					<thead>
-						<tr>
-							<th class="flex justify-start border px-4 py-2">Product/Service</th>
-							<th class="border px-4 py-2">Quantity</th>
-							<th class="border px-4 py-2">Unit Price</th>
-							<th class="border px-4 py-2">Tax (%)</th>
-							<th class="border px-4 py-2">Total</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td class="border px-4 py-2 max-w-12">
-								<div>
-									<input
-										type="text"
-										placeholder="Front End Developer"
-										class="bg-gray-200 max-w-full"
-										bind:value={$invoiceData.specification}
-									/>
-								</div>
-							</td>
-							<td class="max-w-6 border px-4 py-2 items-center">
-								<div class="flex justify-center items-center">
-									<input
-										type="number"
-										min="0"
-										max="10"
-										placeholder="5"
-										class="max-w-[50%] bg-gray-200 text-center"
-										bind:value={$invoiceData.quantity}
-									/>
-								</div>
-							</td>
-							<td class="border px-4 py-2 max-w-20">
-								<div class="flex justify-center items-center">
-									<select class="bg-gray-200 mr-2" bind:value={selectedCurrency}>
-										<option value="usd">USD</option>
-										<option value="eur">EUR</option>
-									</select>
-									<input
-										type="number"
-										min="0"
-										placeholder="2.500"
-										class=" bg-gray-200 max-w-[70%] text-center"
-										bind:value={$invoiceData.unitPrice}
-									/>
-								</div>
-							</td>
-							<td class="border px-4 py-2 max-w-20">
-								<div class="flex justify-center items-center">
-									<input
-										type="number"
-										min="0"
-										max="10"
-										placeholder="0%"
-										class=" bg-gray-200 max-w-[70%] text-center"
-										bind:value={$invoiceData.tax}
-									/>
-								</div>
-							</td>
-							<td class="border px-4 py-2">
-								{#if selectedCurrency === 'usd'}
-									<span>$</span>
-								{:else if selectedCurrency === 'eur'}
-									<span>€</span>
-								{/if}
-								<span>{$invoiceData.total}</span>
-							</td>
-						</tr>
-					</tbody>
+					{#each $invoiceProducts as product}
+						<thead>
+							<tr>
+								<th class="flex justify-start border px-4 py-2">Product/Service</th>
+								<th class="border px-4 py-2">Quantity</th>
+								<th class="border px-4 py-2">Unit Price</th>
+								<th class="border px-4 py-2">Tax (%)</th>
+								<th class="border px-4 py-2">Total</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td class="border px-4 py-2 max-w-12">
+									<div>
+										<input
+											type="text"
+											placeholder="Front End Developer"
+											class="bg-gray-200 max-w-full"
+											bind:value={product.specification}
+										/>
+									</div>
+								</td>
+								<td class="max-w-6 border px-4 py-2 items-center">
+									<div class="flex justify-center items-center">
+										<input
+											type="number"
+											min="0"
+											max="10"
+											placeholder="5"
+											class="max-w-[50%] bg-gray-200 text-center"
+											bind:value={product.quantity}
+										/>
+									</div>
+								</td>
+								<td class="border px-4 py-2 max-w-20">
+									<div class="flex justify-center items-center">
+										<select class="bg-gray-200 mr-2" bind:value={product.currency}>
+											<option value="usd">USD</option>
+											<option value="eur">EUR</option>
+										</select>
+										<input
+											type="number"
+											min="0"
+											placeholder="2.500"
+											class=" bg-gray-200 max-w-[70%] text-center"
+											bind:value={product.unitPrice}
+										/>
+									</div>
+								</td>
+								<td class="border px-4 py-2 max-w-20">
+									<div class="flex justify-center items-center">
+										<input
+											type="number"
+											min="0"
+											max="10"
+											placeholder="0%"
+											class=" bg-gray-200 max-w-[70%] text-center"
+											bind:value={product.tax}
+										/>
+									</div>
+								</td>
+								<td class="border px-4 py-2">
+									{#if product.currency === 'usd'}
+										<span>$</span>
+									{:else if product.currency === 'eur'}
+										<span>€</span>
+									{/if}
+									<span>TBD</span>
+								</td>
+							</tr>
+						</tbody>
+					{/each}
 				</table>
+
+				<div class="flex justify-end items-center">
+					<button class="bg-blue-400 p-2" on:click={handleAddProduct}>Add product/service</button>
+				</div>
 			</section>
 
-			<footer class="flex justify-end">
+			<footer class="flex flex-col justify-end">
 				<div class="text-right">
-					<p class="text-lg font-semibold mb-2">Total: {$invoiceData.total}</p>
+					<p class="text-lg font-semibold mb-2">Total: TBD</p>
+				</div>
+
+				<div class="flex justify-center items-center">
+					<button class="bg-green-500 p-2">Preview invoice</button>
 				</div>
 			</footer>
 		</div>
