@@ -1,5 +1,12 @@
 <script>
-    import InvoiceForm from "../components/+InvoiceForm.svelte";
+    import InvoiceForm from "../components/+InvoiceForm.svelte"
+    import InvoicePreview from "../components/+InvoicePreview.svelte"
+
+    let isPreview = $state(false)
+
+    const togglePreview = () => {
+        isPreview = !isPreview
+    }
 </script>
 
 <main class="p-4 m-4">
@@ -9,7 +16,17 @@
     </header>
 
     <section class="w-full">
-        <InvoiceForm />
+        <svelte:component this={isPreview ? InvoicePreview : InvoiceForm } />
     </section>
-
+ 
+    <div class="flex justify-center items-center">
+        {#if isPreview} 
+        <div>
+            <button class="bg-blue-600 p-2" on:click={togglePreview}>Edit invoice</button>
+            <button class="bg-purple-500 p-2" on:click={togglePreview}>Print invoice</button>
+        </div>
+        {:else}  
+        <button class="bg-green-500 p-2" on:click={togglePreview}>Preview invoice</button>
+        {/if}
+    </div>
 </main>

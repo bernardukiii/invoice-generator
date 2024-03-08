@@ -190,10 +190,6 @@
 				<div class="text-right">
 					<p class="text-lg font-semibold mb-2">Total: TBD</p>
 				</div>
-
-				<div class="flex justify-center items-center">
-					<button class="bg-green-500 p-2">Preview invoice</button>
-				</div>
 			</footer>
 		</div>
 	</div>
