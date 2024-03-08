@@ -104,7 +104,7 @@
 							</td>
 							<td class="border px-4 py-2 max-w-20">
 								<div class="flex justify-center items-center">
-									<p class=" bg-gray-200 max-w-[70%] text-center">{product.tax}%</p>
+									<p class="max-w-[70%] text-center">{product.tax}%</p>
 								</div>
 							</td>
 							<td class="border px-4 py-2">
