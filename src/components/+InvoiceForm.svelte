@@ -1,5 +1,5 @@
 <script>
-	import { clientInfo, invoiceInfo, invoiceProducts } from '../stores'
+	import { clientInfo, invoiceInfo, invoiceProducts, invoiceTotal } from '../stores'
 	
 	const handleAddProduct = () => {
 		alert('I do nothing for now')
@@ -174,7 +174,7 @@
 									{:else if product.currency === 'eur'}
 										<span>€</span>
 									{/if}
-									<span>TBD</span>
+									<span>{$invoiceTotal}</span>
 								</td>
 							</tr>
 						</tbody>
