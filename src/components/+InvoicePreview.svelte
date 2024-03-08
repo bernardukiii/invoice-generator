@@ -89,7 +89,7 @@
 							</td>
 							<td class="max-w-6 border px-4 py-2 items-center">
 								<div class="flex justify-center items-center">
-									<p class="max-w-[50%] bg-gray-200 text-center">{product.quantity}</p>
+									<p class="max-w-[50%] text-center">{product.quantity}</p>
 								</div>
 							</td>
 							<td class="border px-4 py-2 max-w-20">
