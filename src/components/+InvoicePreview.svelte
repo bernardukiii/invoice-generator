@@ -67,5 +67,64 @@
 				</div>
 			</div>
 		</div>
+
+		<section>
+			<table class="w-full mb-8">
+				{#each $invoiceProducts as product}
+					<thead>
+						<tr>
+							<th class="flex justify-start border px-4 py-2">Product/Service</th>
+							<th class="border px-4 py-2">Quantity</th>
+							<th class="border px-4 py-2">Unit Price</th>
+							<th class="border px-4 py-2">Tax (%)</th>
+							<th class="border px-4 py-2">Total</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="border px-4 py-2 max-w-12">
+								<div>
+									<p class="max-w-full" >{product.specification}</p>
+								</div>
+							</td>
+							<td class="max-w-6 border px-4 py-2 items-center">
+								<div class="flex justify-center items-center">
+									<p class="max-w-[50%] bg-gray-200 text-center">{product.quantity}</p>
+								</div>
+							</td>
+							<td class="border px-4 py-2 max-w-20">
+								<div class="flex justify-center items-center">
+									{#if product.currency === 'usd'}
+										<span>$</span>
+									{:else if product.currency === 'eur'}
+										<span>€</span>
+									{/if}
+									<p class="max-w-[70%] text-center" >{product.unitPrice}</p>
+								</div>
+							</td>
+							<td class="border px-4 py-2 max-w-20">
+								<div class="flex justify-center items-center">
+									<p class=" bg-gray-200 max-w-[70%] text-center">{product.tax}%</p>
+								</div>
+							</td>
+							<td class="border px-4 py-2">
+								{#if product.currency === 'usd'}
+									<span>$</span>
+								{:else if product.currency === 'eur'}
+									<span>€</span>
+								{/if}
+								<p>TBD</p>
+							</td>
+						</tr>
+					</tbody>
+				{/each}
+			</table>
+		</section>
+
+		<footer class="flex flex-col justify-end">
+			<div class="text-right">
+				<p class="text-lg font-semibold mb-2">Total: TBD</p>
+			</div>
+		</footer>
 	</div>
 </div>
