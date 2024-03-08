@@ -45,5 +45,27 @@
 				</div>
 			</div>
 		</header>
+
+		<div>
+			<div class="flex justify-between px-4 mb-8">
+				<div class="flex flex-col">
+					<div class="w-full flex flex-col items-end">
+						<div class="flex">
+							<h4 class="mr-2 font-semibold">Issue date:</h4>
+							<p>{$invoiceInfo.issueDate}</p>
+						</div>
+						<div class="flex">
+							<h4 class="mr-2 font-semibold">Due by:</h4>
+							<p>{$invoiceInfo.dueDate}</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="flex items-center">
+					<h1 class="text-xl font-semibold mr-2">Invoice:</h1>
+					<p class="w-1/2">{$invoiceInfo.invoiceNumber}</p>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
