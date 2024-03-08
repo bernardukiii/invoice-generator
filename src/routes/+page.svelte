@@ -20,6 +20,13 @@
     </section>
  
     <div class="flex justify-center items-center">
-        <button class="bg-green-500 p-2" on:click={togglePreview}>{isPreview ? 'Edit invoice' : 'Preview invoice'}</button>
+        {#if isPreview} 
+        <div>
+            <button class="bg-blue-600 p-2" on:click={togglePreview}>Edit invoice</button>
+            <button class="bg-purple-500 p-2" on:click={togglePreview}>Print invoice</button>
+        </div>
+        {:else}  
+        <button class="bg-green-500 p-2" on:click={togglePreview}>Preview invoice</button>
+        {/if}
     </div>
 </main>
