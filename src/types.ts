@@ -1,7 +1,7 @@
 export interface Product {
     specification: string,
-    quantity: string,
+    quantity: number,
     currency: string,
     unitPrice: number,
-    tax: string,
+    tax: number,
 }

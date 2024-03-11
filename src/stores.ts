@@ -18,10 +18,10 @@ export const invoiceInfo = writable({
 export const invoiceProducts = writable<Product[]>([
     {
         specification: '',
-        quantity: '',
+        quantity: 0,
         currency: 'usd',
         unitPrice: 0,
-        tax: '',
+        tax: 0,
     }
 ])
 
