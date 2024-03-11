@@ -22,13 +22,6 @@ export const invoiceProducts = writable<Product[]>([
         currency: 'usd',
         unitPrice: 0,
         tax: '',
-    },
-    {
-        specification: '',
-        quantity: '',
-        currency: 'usd',
-        unitPrice: 0,
-        tax: '',
     }
 ])
 
