@@ -1,5 +1,14 @@
-<script>
+<script lang="ts">
 	import { clientInfo, invoiceInfo, invoiceProducts, invoiceTotal } from '../stores'
+	
+	// Update store
+	const updateInvoiceProducts = (fieldName: string) => (e: Event) => {
+		const newValue = (e?.target as HTMLInputElement).value
+		console.log(newValue)
+		invoiceProducts.update((product) => ({ ...product, [fieldName]: newValue}))
+
+		console.log('should be the updated object', $invoiceProducts)
+	}
 	
 	const handleAddProduct = () => {
 		alert('I do nothing for now')
@@ -124,8 +133,10 @@
 										<input
 											type="text"
 											placeholder="Front End Developer"
+											name="specification"
 											class="bg-gray-200 max-w-full"
 											bind:value={product.specification}
+											on:change={updateInvoiceProducts('specification')}
 										/>
 									</div>
 								</td>
@@ -136,8 +147,10 @@
 											min="0"
 											max="10"
 											placeholder="5"
+											name="quantity"
 											class="max-w-[50%] bg-gray-200 text-center"
 											bind:value={product.quantity}
+											on:change={updateInvoiceProducts('quantity')}
 										/>
 									</div>
 								</td>
@@ -151,8 +164,10 @@
 											type="number"
 											min="0"
 											placeholder="2.500"
+											name="unitPrice"
 											class=" bg-gray-200 max-w-[70%] text-center"
 											bind:value={product.unitPrice}
+											on:change={updateInvoiceProducts('unitPrice')}
 										/>
 									</div>
 								</td>
@@ -163,8 +178,10 @@
 											min="0"
 											max="10"
 											placeholder="0%"
+											name="tax"
 											class=" bg-gray-200 max-w-[70%] text-center"
 											bind:value={product.tax}
+											on:change={updateInvoiceProducts('tax')}
 										/>
 									</div>
 								</td>
@@ -174,7 +191,7 @@
 									{:else if product.currency === 'eur'}
 										<span>€</span>
 									{/if}
-									<span>{$invoiceTotal}</span>
+									<span>{product.unitPrice * product.quantity}</span>
 								</td>
 							</tr>
 						</tbody>
@@ -188,7 +205,7 @@
 
 			<footer class="flex flex-col justify-end">
 				<div class="text-right">
-					<p class="text-lg font-semibold mb-2">Total: TBD</p>
+					<p class="text-lg font-semibold mb-2">Total: {$invoiceTotal}</p>
 				</div>
 			</footer>
 		</div>
