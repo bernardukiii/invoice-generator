@@ -4,8 +4,12 @@
 	// Update store
 	const updateInvoiceProducts = (fieldName: string) => (e: Event) => {
 		const newValue = (e?.target as HTMLInputElement).value
-		console.log(newValue)
-		invoiceProducts.update((product) => ({ ...product, [fieldName]: newValue}))
+		
+		invoiceProducts.update((product) => {
+			return product.map((product) => {
+				return { ...product, [fieldName]: newValue }
+			})
+		})
 
 		console.log('should be the updated object', $invoiceProducts)
 	}
