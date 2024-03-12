@@ -32,12 +32,14 @@ export const invoiceTotal = derived(
         let fullPrice: number
         const pricesArray: number[] = []
         
-        $invoiceProducts.forEach((product) => {
-            pricesArray.push(product.unitPrice)
-        })
-
-        return fullPrice = pricesArray.reduce((totalPrice, currentPrice) => {
-            return totalPrice + currentPrice
-        })
+        if ($invoiceProducts && Array.isArray($invoiceProducts)) {
+            $invoiceProducts.forEach((product) => {
+                pricesArray.push(product.unitPrice)
+            })
+    
+            return fullPrice = pricesArray.reduce((totalPrice, currentPrice) => {
+                return totalPrice + currentPrice
+            })
+        }
     }
 )
