@@ -1,19 +1,10 @@
 <script>
-	import { clientInfo, invoiceInfo, invoiceProducts } from '../stores'
+	import { clientInfo, invoiceInfo, invoiceProducts, invoiceTotal } from '../stores'
 	
-	let productTotal 
-	let invoiceTotal
-
-	$invoiceProducts.forEach((product) => {
-		
-	})
-
 	const handleAddProduct = () => {
 		alert('I do nothing for now')
 		// Add product/service
 	}
-
-
 </script>
 
 <div class="container mx-auto m-4 w-[45vw]">
@@ -183,7 +174,7 @@
 									{:else if product.currency === 'eur'}
 										<span>€</span>
 									{/if}
-									<span></span>
+									<span>{$invoiceTotal}</span>
 								</td>
 							</tr>
 						</tbody>
