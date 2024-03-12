@@ -20,24 +20,14 @@ export const invoiceProducts = writable<Product[]>([
         specification: '',
         quantity: 0,
         currency: 'usd',
-        unitPrice: 0,
+        unitPrice: 2500,
+        tax: 0,
+    },
+    {
+        specification: '',
+        quantity: 0,
+        currency: 'usd',
+        unitPrice: 2500,
         tax: 0,
     }
 ])
-
-// Derived store from invoiceProducts to get the sum of all the product objects
-export const invoiceTotal = derived(
-    invoiceProducts,
-    ($invoiceProducts: Product[]) => {
-        let fullPrice: number
-        const pricesArray: number[] = []
-        
-        $invoiceProducts.forEach((product) => {
-            pricesArray.push(product.unitPrice)
-        })
-
-        return fullPrice = pricesArray.reduce((totalPrice, currentPrice) => {
-            return totalPrice + currentPrice
-        })
-    }
-)
