@@ -195,7 +195,7 @@
 									{:else if product.currency === 'eur'}
 										<span>€</span>
 									{/if}
-									<span>{$productsTotal}</span>
+									<span>{$productsTotal?.fullPrice}</span>
 								</td>
 							</tr>
 						</tbody>
@@ -209,7 +209,7 @@
 
 			<footer class="flex flex-col justify-end">
 				<div class="text-right">
-					<p class="text-lg font-semibold mb-2">Total: TBD</p>
+					<p class="text-lg font-semibold mb-2">Total: {$productsTotal?.invoiceTotal}</p>
 				</div>
 			</footer>
 		</div>

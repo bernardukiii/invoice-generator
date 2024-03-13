@@ -22,31 +22,38 @@ export const invoiceProducts = writable<Product[]>([
         currency: 'usd',
         unitPrice: '',
         tax:'',
-    }
+    },
 ])
 
 export const productsTotal = derived(
     invoiceProducts,
     ($invoiceProducts: Product[]) => {
         let fullPrice
+        let invoiceTotal = 0
         if ($invoiceProducts && Array.isArray($invoiceProducts)) {
             $invoiceProducts.forEach((product) => {                
                 const parsedTax = parseFloat(product.tax)
                 const parsedPrice = parseFloat(product.unitPrice)
                 const parsedQuantity = parseFloat(product.quantity)
+                let productTotal
+
                 if (parsedTax > 0) {
                     const taxedAmount = (parsedPrice * parsedTax) / 100
-                    console.log('tax', taxedAmount)
                     fullPrice = (parsedPrice + taxedAmount) * parsedQuantity
-                    console.log('full price', fullPrice)
+                    productTotal = fullPrice
                 } else if (parsedQuantity > 0 && parsedPrice > 0) {
                     fullPrice = parsedPrice * parsedQuantity
+                    productTotal = fullPrice
                 } else {
                     fullPrice = 0
                 }
+
+                if (productTotal != undefined) {
+                    invoiceTotal += productTotal
+                }
             })
 
-            return fullPrice
+            return {fullPrice, invoiceTotal}
         }
     }
 )
