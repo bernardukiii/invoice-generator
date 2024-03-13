@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { clientInfo, invoiceInfo, invoiceProducts, invoiceTotal } from '../stores'
+	import { clientInfo, invoiceInfo, invoiceProducts, productsTotal } from '../stores'
 	
 	// Update store
 	const updateInvoiceProducts = (fieldName: string) => (e: Event) => {
@@ -180,7 +180,7 @@
 										<input
 											type="number"
 											min="0"
-											max="10"
+											max="50"
 											placeholder="0%"
 											name="tax"
 											class=" bg-gray-200 max-w-[70%] text-center"
@@ -195,7 +195,7 @@
 									{:else if product.currency === 'eur'}
 										<span>€</span>
 									{/if}
-									<span>{product.unitPrice * product.quantity}</span>
+									<span>{$productsTotal}</span>
 								</td>
 							</tr>
 						</tbody>
@@ -209,7 +209,7 @@
 
 			<footer class="flex flex-col justify-end">
 				<div class="text-right">
-					<p class="text-lg font-semibold mb-2">Total: {$invoiceTotal}</p>
+					<p class="text-lg font-semibold mb-2">Total: TBD</p>
 				</div>
 			</footer>
 		</div>

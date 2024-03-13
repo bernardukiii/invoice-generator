@@ -18,28 +18,35 @@ export const invoiceInfo = writable({
 export const invoiceProducts = writable<Product[]>([
     {
         specification: '',
-        quantity: 0,
+        quantity: '',
         currency: 'usd',
-        unitPrice: 0,
-        tax: 0,
+        unitPrice: '',
+        tax:'',
     }
 ])
 
-// Derived store from invoiceProducts to get the sum of all the product objects
-export const invoiceTotal = derived(
+export const productsTotal = derived(
     invoiceProducts,
     ($invoiceProducts: Product[]) => {
-        let fullPrice: number
-        const pricesArray: number[] = []
-        
+        let fullPrice
         if ($invoiceProducts && Array.isArray($invoiceProducts)) {
-            $invoiceProducts.forEach((product) => {
-                pricesArray.push(product.unitPrice)
+            $invoiceProducts.forEach((product) => {                
+                const parsedTax = parseFloat(product.tax)
+                const parsedPrice = parseFloat(product.unitPrice)
+                const parsedQuantity = parseFloat(product.quantity)
+                if (parsedTax > 0) {
+                    const taxedAmount = (parsedPrice * parsedTax) / 100
+                    console.log('tax', taxedAmount)
+                    fullPrice = (parsedPrice + taxedAmount) * parsedQuantity
+                    console.log('full price', fullPrice)
+                } else if (parsedQuantity > 0 && parsedPrice > 0) {
+                    fullPrice = parsedPrice * parsedQuantity
+                } else {
+                    fullPrice = 0
+                }
             })
-    
-            return fullPrice = pricesArray.reduce((totalPrice, currentPrice) => {
-                return totalPrice + currentPrice
-            })
+
+            return fullPrice
         }
     }
 )
