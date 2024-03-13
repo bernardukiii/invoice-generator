@@ -1,4 +1,5 @@
-import { writable } from "svelte/store"
+import type { Product } from "./types"
+import { writable, derived } from "svelte/store"
 
 export const clientInfo = writable({
     companyName: '',
@@ -14,14 +15,45 @@ export const invoiceInfo = writable({
     dueDate: ''
 })
 
-export const invoiceProducts = writable([
+export const invoiceProducts = writable<Product[]>([
     {
         specification: '',
         quantity: '',
         currency: 'usd',
         unitPrice: '',
-        tax: '',
-    }
+        tax:'',
+    },
 ])
 
-// I need to write up a derived store from invoiceProducts to get the sum of all the product objects
+export const productsTotal = derived(
+    invoiceProducts,
+    ($invoiceProducts: Product[]) => {
+        let fullPrice
+        let invoiceTotal = 0
+        if ($invoiceProducts && Array.isArray($invoiceProducts)) {
+            $invoiceProducts.forEach((product) => {                
+                const parsedTax = parseFloat(product.tax)
+                const parsedPrice = parseFloat(product.unitPrice)
+                const parsedQuantity = parseFloat(product.quantity)
+                let productTotal
+
+                if (parsedTax > 0) {
+                    const taxedAmount = (parsedPrice * parsedTax) / 100
+                    fullPrice = (parsedPrice + taxedAmount) * parsedQuantity
+                    productTotal = fullPrice
+                } else if (parsedQuantity > 0 && parsedPrice > 0) {
+                    fullPrice = parsedPrice * parsedQuantity
+                    productTotal = fullPrice
+                } else {
+                    fullPrice = 0
+                }
+
+                if (productTotal != undefined) {
+                    invoiceTotal += productTotal
+                }
+            })
+
+            return {fullPrice, invoiceTotal}
+        }
+    }
+)
