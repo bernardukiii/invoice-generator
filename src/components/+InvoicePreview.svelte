@@ -1,5 +1,5 @@
 <script>
-	import { clientInfo, invoiceInfo, invoiceProducts } from '../stores'
+	import { clientInfo, invoiceInfo, invoiceProducts, productsTotal } from '../stores'
 </script>
 
 <div class="container mx-auto m-4 w-[45vw]">
@@ -113,7 +113,7 @@
 								{:else if product.currency === 'eur'}
 									<span>€</span>
 								{/if}
-								<p>TBD</p>
+								<p>{$productsTotal?.fullPrice}</p>
 							</td>
 						</tr>
 					</tbody>
@@ -123,7 +123,7 @@
 
 		<footer class="flex flex-col justify-end">
 			<div class="text-right">
-				<p class="text-lg font-semibold mb-2">Total: TBD</p>
+				<p class="text-lg font-semibold mb-2">Total: {$productsTotal?.invoiceTotal}</p>
 			</div>
 		</footer>
 	</div>
