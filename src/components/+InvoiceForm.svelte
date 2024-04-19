@@ -123,7 +123,7 @@
 
 			<section>
 				<table class="w-full mb-8">
-					{#each $invoiceProducts as product (product.id)}
+					{#each $invoiceProducts as product, index (product.id)}
 						<thead>
 							<tr>
 								<th class="flex justify-start border px-4 py-2">Product/Service</th>
@@ -198,7 +198,7 @@
 									{:else if product.currency === 'eur'}
 										<span>€</span>
 									{/if}
-									<span>{$productsTotal?.fullPrice}</span>
+									<span>{$productsTotal.productsFullPrices[index]}</span>
 								</td>
 							</tr>
 						</tbody>
