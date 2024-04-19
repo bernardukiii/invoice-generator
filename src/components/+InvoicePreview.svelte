@@ -1,5 +1,6 @@
 <script>
 	import { clientInfo, invoiceInfo, invoiceProducts, productsTotal } from '../stores'
+	import { jsPDF } from 'jspdf'
 </script>
 
 <div class="container mx-auto m-4 w-[45vw]">
