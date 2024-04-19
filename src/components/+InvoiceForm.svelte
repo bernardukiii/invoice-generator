@@ -2,12 +2,15 @@
 	import { clientInfo, invoiceInfo, invoiceProducts, productsTotal } from '../stores'
 	
 	// Update store
-	const updateInvoiceProducts = (fieldName: string) => (e: Event) => {
+	const updateInvoiceProducts = (productID: number, fieldName: string) => (e: Event) => {
 		const newValue = (e?.target as HTMLInputElement).value
 		
-		invoiceProducts.update((product) => {
-			return product.map((product) => {
-				return { ...product, [fieldName]: newValue }
+		invoiceProducts.update((products) => {
+			return products.map((product) => {
+				if (product.id === productID) {
+					return { ...product, [fieldName]: newValue }
+				}
+				return product
 			})
 		})
 
@@ -15,8 +18,32 @@
 	}
 	
 	const handleAddProduct = () => {
-		alert('I do nothing for now')
-		// Add product/service
+		invoiceProducts.update(currentProducts => {
+			// Correctly calculate the highest ID used so far
+			const highestID = currentProducts.reduce((maxVal, product) => Math.max(maxVal, product.id), -1)
+
+			// Define the new product with a unique ID
+			const newProduct = {
+				id: highestID + 1,
+				specification: '',
+				quantity: '',
+				currency: 'usd',
+				unitPrice: '',
+				tax: '',
+			}
+
+			// Return the new list of products including the new product
+			return [...currentProducts, newProduct]
+		})
+	}
+
+	const handleRemoveProduct = (index: any) => {
+		console.log('clicked', index)
+		invoiceProducts.update(currentProducts => {
+			currentProducts.splice(index, 1)
+
+			return currentProducts
+		})
 	}
 </script>
 
@@ -120,7 +147,7 @@
 
 			<section>
 				<table class="w-full mb-8">
-					{#each $invoiceProducts as product}
+					{#each $invoiceProducts as product, index (product.id)}
 						<thead>
 							<tr>
 								<th class="flex justify-start border px-4 py-2">Product/Service</th>
@@ -140,7 +167,7 @@
 											name="specification"
 											class="bg-gray-200 max-w-full"
 											bind:value={product.specification}
-											on:change={updateInvoiceProducts('specification')}
+											on:change={updateInvoiceProducts(product.id, 'specification')}
 										/>
 									</div>
 								</td>
@@ -154,7 +181,7 @@
 											name="quantity"
 											class="max-w-[50%] bg-gray-200 text-center"
 											bind:value={product.quantity}
-											on:change={updateInvoiceProducts('quantity')}
+											on:change={updateInvoiceProducts(product.id, 'quantity')}
 										/>
 									</div>
 								</td>
@@ -171,7 +198,7 @@
 											name="unitPrice"
 											class=" bg-gray-200 max-w-[70%] text-center"
 											bind:value={product.unitPrice}
-											on:change={updateInvoiceProducts('unitPrice')}
+											on:change={updateInvoiceProducts(product.id, 'unitPrice')}
 										/>
 									</div>
 								</td>
@@ -185,7 +212,7 @@
 											name="tax"
 											class=" bg-gray-200 max-w-[70%] text-center"
 											bind:value={product.tax}
-											on:change={updateInvoiceProducts('tax')}
+											on:change={updateInvoiceProducts(product.id, 'tax')}
 										/>
 									</div>
 								</td>
@@ -195,7 +222,12 @@
 									{:else if product.currency === 'eur'}
 										<span>€</span>
 									{/if}
-									<span>{$productsTotal?.fullPrice}</span>
+									<span>{$productsTotal.productsFullPrices[index]}</span>
+								</td>
+								<td class="px-4 py-2">
+									<div>
+										<button on:click={() => handleRemoveProduct(index)} class="bg-red-400 text-white p-2" >Remove</button>
+									</div>
 								</td>
 							</tr>
 						</tbody>

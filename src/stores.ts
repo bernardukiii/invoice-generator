@@ -17,6 +17,7 @@ export const invoiceInfo = writable({
 
 export const invoiceProducts = writable<Product[]>([
     {
+        id: 0,
         specification: '',
         quantity: '',
         currency: 'usd',
@@ -28,32 +29,24 @@ export const invoiceProducts = writable<Product[]>([
 export const productsTotal = derived(
     invoiceProducts,
     ($invoiceProducts: Product[]) => {
-        let fullPrice
         let invoiceTotal = 0
-        if ($invoiceProducts && Array.isArray($invoiceProducts)) {
-            $invoiceProducts.forEach((product) => {                
-                const parsedTax = parseFloat(product.tax)
-                const parsedPrice = parseFloat(product.unitPrice)
-                const parsedQuantity = parseFloat(product.quantity)
-                let productTotal
+        let productsFullPrices = $invoiceProducts.map(product => {
+            const parsedTax = parseFloat(product.tax) || 0
+            const parsedPrice = parseFloat(product.unitPrice) || 0
+            const parsedQuantity = parseFloat(product.quantity) || 0
+            let productTotal = 0
+            
+            if (parsedTax > 0 && parsedPrice > 0 && parsedQuantity > 0) {
+                const taxedAmount = (parsedPrice * parsedTax) / 100
+                productTotal = (parsedPrice + taxedAmount) * parsedQuantity
+            } else if (parsedQuantity > 0 && parsedPrice > 0) {
+                productTotal = parsedPrice * parsedQuantity
+            }
+            
+            invoiceTotal += productTotal
+            return productTotal; // returning individual product total
+        });
 
-                if (parsedTax > 0) {
-                    const taxedAmount = (parsedPrice * parsedTax) / 100
-                    fullPrice = (parsedPrice + taxedAmount) * parsedQuantity
-                    productTotal = fullPrice
-                } else if (parsedQuantity > 0 && parsedPrice > 0) {
-                    fullPrice = parsedPrice * parsedQuantity
-                    productTotal = fullPrice
-                } else {
-                    fullPrice = 0
-                }
-
-                if (productTotal != undefined) {
-                    invoiceTotal += productTotal
-                }
-            })
-
-            return {fullPrice, invoiceTotal}
-        }
+        return { productsFullPrices, invoiceTotal }; // Now contains an array of each product's full price
     }
 )
