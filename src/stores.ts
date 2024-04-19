@@ -24,14 +24,6 @@ export const invoiceProducts = writable<Product[]>([
         unitPrice: '',
         tax:'',
     },
-    {
-        id: 1,
-        specification: '',
-        quantity: '',
-        currency: 'usd',
-        unitPrice: '',
-        tax:'',
-    },
 ])
 
 export const productsTotal = derived(
