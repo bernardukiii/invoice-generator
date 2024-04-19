@@ -18,8 +18,23 @@
 	}
 	
 	const handleAddProduct = () => {
-		alert('I do nothing for now')
-		// Add product/service
+		invoiceProducts.update(currentProducts => {
+			// Correctly calculate the highest ID used so far
+			const highestID = currentProducts.reduce((maxVal, product) => Math.max(maxVal, product.id), -1);
+
+			// Define the new product with a unique ID
+			const newProduct = {
+				id: highestID + 1,
+				specification: '',
+				quantity: '',
+				currency: 'usd',
+				unitPrice: '',
+				tax: '',
+			};
+
+			// Return the new list of products including the new product
+			return [...currentProducts, newProduct];
+		})
 	}
 </script>
 
