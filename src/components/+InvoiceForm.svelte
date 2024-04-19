@@ -20,7 +20,7 @@
 	const handleAddProduct = () => {
 		invoiceProducts.update(currentProducts => {
 			// Correctly calculate the highest ID used so far
-			const highestID = currentProducts.reduce((maxVal, product) => Math.max(maxVal, product.id), -1);
+			const highestID = currentProducts.reduce((maxVal, product) => Math.max(maxVal, product.id), -1)
 
 			// Define the new product with a unique ID
 			const newProduct = {
@@ -30,10 +30,19 @@
 				currency: 'usd',
 				unitPrice: '',
 				tax: '',
-			};
+			}
 
 			// Return the new list of products including the new product
-			return [...currentProducts, newProduct];
+			return [...currentProducts, newProduct]
+		})
+	}
+
+	const handleRemoveProduct = (index: any) => {
+		console.log('clicked', index)
+		invoiceProducts.update(currentProducts => {
+			currentProducts.splice(index, 1)
+
+			return currentProducts
 		})
 	}
 </script>
@@ -214,6 +223,11 @@
 										<span>€</span>
 									{/if}
 									<span>{$productsTotal.productsFullPrices[index]}</span>
+								</td>
+								<td class="px-4 py-2">
+									<div>
+										<button on:click={() => handleRemoveProduct(index)} class="bg-red-400 text-white p-2" >Remove</button>
+									</div>
 								</td>
 							</tr>
 						</tbody>
