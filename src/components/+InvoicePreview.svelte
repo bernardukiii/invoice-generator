@@ -1,10 +1,9 @@
 <script>
 	import { clientInfo, invoiceInfo, invoiceProducts, productsTotal } from '../stores'
-	import { jsPDF } from 'jspdf'
 </script>
 
 <div class="container mx-auto m-4 w-[45vw]">
-	<div class="w-full p-8 bg-white rounded-lg shadow-md overflow-hidden">
+	<div id="bdki-complete-invoice" class="w-full p-8 bg-white rounded-lg shadow-md overflow-hidden">
 		<header class="flex justify-between mb-4">
 			<div>
 				<h1 class="text-2xl font-normal mb-2">Bernardo Camilo Ferrari</h1>
@@ -71,7 +70,7 @@
 
 		<section>
 			<table class="w-full mb-8">
-				{#each $invoiceProducts as product}
+				{#each $invoiceProducts as product, index (product.id)}
 					<thead>
 						<tr>
 							<th class="flex justify-start border px-4 py-2">Product/Service</th>
@@ -114,7 +113,7 @@
 								{:else if product.currency === 'eur'}
 									<span>€</span>
 								{/if}
-								<p>{$productsTotal?.fullPrice}</p>
+								<p>{$productsTotal?.productsFullPrices[index]}</p>
 							</td>
 						</tr>
 					</tbody>
