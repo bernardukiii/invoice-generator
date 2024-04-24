@@ -29,12 +29,12 @@
                                 <p>{$clientInfo.companyName}</p>
 							</div>
 							<div>
-								<h4 class="font-semibold">Street adress:</h4>
-                                <p>{$clientInfo.streetAdress}</p>
+								<h4 class="font-semibold">Street address:</h4>
+                                <p>{$clientInfo.streetAddress}</p>
 							</div>
 							<div>
 								<h4 class="font-semibold">Provice & country:</h4>
-                                <p>{$clientInfo.location}</p>
+                                <p>{$clientInfo.city}, {$clientInfo.country}</p>
 							</div>
 							<div>
 								<h4 class="font-semibold">Representative email:</h4>
@@ -82,7 +82,7 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td class="border px-4 py-2 max-w-12">
+							<td class="border px-4 py-2 max-w-12 break-words">
 								<div>
 									<p class="max-w-full" >{product.specification}</p>
 								</div>
@@ -92,25 +92,25 @@
 									<p class="max-w-[50%] text-center">{product.quantity}</p>
 								</div>
 							</td>
-							<td class="border px-4 py-2 max-w-20">
+							<td class="border px-4 py-2 max-w-20 break-words">
 								<div class="flex justify-center items-center">
-									{#if product.currency === 'usd'}
+									{#if $invoiceInfo.currency === 'usd'}
 										<span>$</span>
-									{:else if product.currency === 'eur'}
+									{:else if $invoiceInfo.currency === 'eur'}
 										<span>€</span>
 									{/if}
-									<p class="max-w-[70%] text-center" >{product.unitPrice}</p>
+									<p class="max-w-[70%] break-words text-center" >{product.unitPrice}</p>
 								</div>
 							</td>
-							<td class="border px-4 py-2 max-w-20">
+							<td class="border px-4 py-2 max-w-20 break-words">
 								<div class="flex justify-center items-center">
 									<p class="max-w-[70%] text-center">{product.tax}%</p>
 								</div>
 							</td>
 							<td class="border px-4 py-2">
-								{#if product.currency === 'usd'}
+								{#if $invoiceInfo.currency === 'usd'}
 									<span>$</span>
-								{:else if product.currency === 'eur'}
+								{:else if $invoiceInfo.currency === 'eur'}
 									<span>€</span>
 								{/if}
 								<p>{$productsTotal?.productsFullPrices[index]}</p>

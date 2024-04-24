@@ -1,10 +1,19 @@
 import type { Product } from "./types"
 import { writable, derived } from "svelte/store"
 
+export const senderInfo = writable({
+    userName: '',
+    streetAddress: '',
+    city: '',
+    country: '',
+    userEmail: '',
+})
+
 export const clientInfo = writable({
     companyName: '',
-    streetAdress: '',
-    location: '',
+    streetAddress: '',
+    city: '',
+    country: '',
     representativeEmail: '',
 })
 

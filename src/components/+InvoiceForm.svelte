@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { clientInfo, invoiceInfo, invoiceProducts, productsTotal } from '../stores'
+	import { senderInfo, clientInfo, invoiceInfo, invoiceProducts, productsTotal } from '../stores'
 	import { Button, Input, Select, Label } from 'flowbite-svelte'
 	import { TrashBinOutline, PlusOutline } from 'flowbite-svelte-icons';
 	
@@ -57,15 +57,17 @@
 	<div class="w-full p-8 bg-white rounded-lg shadow-md overflow-hidden">
 		<header class="flex justify-between mb-4">
 			<div>
-				<h1 class="text-2xl font-normal mb-2">Bernardo Camilo Ferrari</h1>
+				<Input class='mb-4' placeholder='Full name: eg, John Doe' />
 
 				<div>
-					<h2 class="text-lg font-semibold">Contact details:</h2>
+					<h2 class="text-lg font-semibold mb-2">Contact details:</h2>
 
 					<div>
-						<p>Mariano Moreno 960, Ing. Maschwitz</p>
-						<p>1623 Buenos Aires, Argentina</p>
-						<p>bdki.development@gmail.com</p>
+						<Input class='mb-2' size='sm' placeholder='Private/Company name' bind:value={$senderInfo.userName} />
+						<Input class='mb-2' size='sm' placeholder='Address' bind:value={$senderInfo.streetAddress} />
+						<Input class='mb-2' size='sm' placeholder='City' bind:value={$senderInfo.city} />
+						<Input class='mb-2' size='sm' placeholder='Country' bind:value={$senderInfo.country} />
+						<Input class='mb-2' size='sm' placeholder='E-mail' bind:value={$senderInfo.userEmail} />
 					</div>
 				</div>
 			</div>
@@ -73,56 +75,13 @@
 			<div class="flex flex-col">
 				<div class="flex justify-end mb-2">
 					<div>
-						<h2 class="text-lg font-semibold">Client details</h2>
+						<h2 class="text-lg font-semibold mb-2">Client details:</h2>
 						<div class="flex flex-col">
-							<div>
-								<Label class="flex flex-col">
-									Company name:
-									<Input
-										size='sm'
-										type="text"
-										placeholder="Google"
-										class="bg-gray-200"
-										bind:value={$clientInfo.companyName}
-									/>
-								</Label>
-							</div>
-							<div>
-								<Label class="flex flex-col">
-									Street adress:
-									<Input
-										size='sm'
-										type="text"
-										placeholder="10 Downing Street"
-										class="bg-gray-200"
-										bind:value={$clientInfo.streetAdress}
-									/>
-								</Label>
-							</div>
-							<div>
-								<Label class="flex flex-col">
-									Provice & country:
-									<Input
-										size='sm'
-										type="text"
-										placeholder="Buenos Aires, Argentina"
-										class="bg-gray-200"
-										bind:value={$clientInfo.location}
-									/>
-								</Label>
-							</div>
-							<div>
-								<Label class="flex flex-col">
-									Representative email:
-									<Input
-										size='sm'
-										type="email"
-										placeholder="john.doe@gmail.com"
-										class="bg-gray-200"
-										bind:value={$clientInfo.representativeEmail}
-									/>
-								</Label>
-							</div>
+							<Input size='sm' type="text" placeholder="Private/Company name" class='mb-2' bind:value={$clientInfo.companyName} />
+							<Input size='sm' type="text" placeholder="Street address" class="mb-2" bind:value={$clientInfo.streetAddress} />
+							<Input size='sm' type="text" placeholder="City" class="mb-2" bind:value={$clientInfo.city} />
+							<Input size='sm' type="text" placeholder="Country" class="mb-2" bind:value={$clientInfo.country} />
+							<Input size='sm' type="email" placeholder="Representative Email" class="mb-2" bind:value={$clientInfo.representativeEmail} />
 						</div>
 					</div>
 				</div>
@@ -131,28 +90,27 @@
 
 		<div>
 			<div class="flex justify-between px-4 mb-8">
-				<div class="flex flex-col">
-					<div class="w-full flex flex-col items-end">
-						<div class="flex">
-							<Label class="mr-2">Issue date:</Label>
-							<Input
-								class='bg-gray-200'
-								size='sm' 
-								type="date" 
-								bind:value={$invoiceInfo.issueDate} />
-						</div>
-						<div class="flex">
-							<Label>Due by:</Label>
-							<Input
-								class='bg-gray-200'
-								size='sm' 
-								type="date" 
-								bind:value={$invoiceInfo.dueDate} />
-						</div>
+				<div class="flex justify-between">
+					<div class="flex flex-col justify-start items-start mr-2">
+						<Label class="mr-2 w-max">Issue date:</Label>
+						<Input
+							class='w-fit bg-gray-200'
+							size='sm' 
+							type="date" 
+							bind:value={$invoiceInfo.issueDate} />
+					</div>
+					
+					<div class="flex flex-col justify-start items-start">
+						<Label class='mr-2 w-max'>Due by:</Label>
+						<Input
+							class='w-fit bg-gray-200'
+							size='sm' 
+							type="date" 
+							bind:value={$invoiceInfo.dueDate} />
 					</div>
 				</div>
 
-				<div class="flex items-center">
+				<div class="flex flex-col items-start justify-start">
 					<Label class="text-xl font-semibold mr-2">Invoice:</Label>
 					<Input
 						size='sm'
@@ -200,7 +158,7 @@
 											max="10"
 											placeholder="5"
 											name="quantity"
-											class="max-w-[50%] bg-gray-200 text-center"
+											class="max-w-[70%] bg-gray-200 text-center"
 											bind:value={product.quantity}
 											on:change={updateInvoiceProducts(product.id, 'quantity')}
 										/>
@@ -214,7 +172,7 @@
 											min="0"
 											placeholder="2.500"
 											name="unitPrice"
-											class=" bg-gray-200 max-w-[70%] text-center"
+											class=" bg-gray-200 max-w-full text-center"
 											bind:value={product.unitPrice}
 											on:change={updateInvoiceProducts(product.id, 'unitPrice')}
 										/>
