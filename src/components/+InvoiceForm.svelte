@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { clientInfo, invoiceInfo, invoiceProducts, productsTotal } from '../stores'
-	import { Button, Input, Select } from 'flowbite-svelte'
+	import { Button, Input, Select, Label } from 'flowbite-svelte'
 	import { TrashBinOutline, PlusOutline } from 'flowbite-svelte-icons';
 	
 	// Update store
@@ -76,7 +76,7 @@
 						<h2 class="text-lg font-semibold">Client details</h2>
 						<div class="flex flex-col">
 							<div>
-								<label class="flex flex-col">
+								<Label class="flex flex-col">
 									Company name:
 									<Input
 										type="text"
@@ -84,10 +84,10 @@
 										class="bg-gray-200"
 										bind:value={$clientInfo.companyName}
 									/>
-								</label>
+								</Label>
 							</div>
 							<div>
-								<label class="flex flex-col">
+								<Label class="flex flex-col">
 									Street adress:
 									<Input
 										type="text"
@@ -95,10 +95,10 @@
 										class="bg-gray-200"
 										bind:value={$clientInfo.streetAdress}
 									/>
-								</label>
+								</Label>
 							</div>
 							<div>
-								<label class="flex flex-col">
+								<Label class="flex flex-col">
 									Provice & country:
 									<Input
 										type="text"
@@ -106,10 +106,10 @@
 										class="bg-gray-200"
 										bind:value={$clientInfo.location}
 									/>
-								</label>
+								</Label>
 							</div>
 							<div>
-								<label class="flex flex-col">
+								<Label class="flex flex-col">
 									Representative email:
 									<Input
 										type="email"
@@ -117,7 +117,7 @@
 										class="bg-gray-200"
 										bind:value={$clientInfo.representativeEmail}
 									/>
-								</label>
+								</Label>
 							</div>
 						</div>
 					</div>
@@ -130,18 +130,18 @@
 				<div class="flex flex-col">
 					<div class="w-full flex flex-col items-end">
 						<div class="flex">
-							<p class="mr-2">Issue date:</p>
+							<Label class="mr-2">Issue date:</Label>
 							<Input type="date" bind:value={$invoiceInfo.issueDate} />
 						</div>
 						<div class="flex">
-							<p>Due by:</p>
+							<Label>Due by:</Label>
 							<Input type="date" bind:value={$invoiceInfo.dueDate} />
 						</div>
 					</div>
 				</div>
 
 				<div class="flex items-center">
-					<h1 class="text-xl font-semibold mr-2">Invoice:</h1>
+					<Label class="text-xl font-semibold mr-2">Invoice:</Label>
 					<Input
 						class="w-1/2 text-gray-500 bg-gray-200"
 						placeholder="001"
