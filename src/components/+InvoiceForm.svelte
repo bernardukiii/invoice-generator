@@ -48,8 +48,8 @@
 
 	// Select options
 	let currency = [
-    { value: 'usd', name: 'USD' },
-    { value: 'eur', name: 'EUR' },
+    { value: 'usd', name: 'USD (United States)' },
+    { value: 'eur', name: 'EUR (European Union)' },
   ]
 </script>
 
@@ -207,9 +207,7 @@
 									</div>
 								</td>
 								<td class="border px-4 py-2 max-w-20">
-									<div class="flex justify-center items-center">
-										<Select size='sm' class="bg-gray-200 mr-2" items={currency} bind:value={product.currency} />
-											
+									<div class="flex justify-center items-center">											
 										<Input
 											size='sm'
 											type="number"
@@ -238,9 +236,9 @@
 									</div>
 								</td>
 								<td class="border px-4 py-2">
-									{#if product.currency === 'usd'}
+									{#if $invoiceInfo.currency === 'usd'}
 										<span>$</span>
-									{:else if product.currency === 'eur'}
+									{:else if $invoiceInfo.currency === 'eur'}
 										<span>€</span>
 									{/if}
 									<span>{$productsTotal.productsFullPrices[index]}</span>
@@ -263,8 +261,11 @@
 				</div>
 			</section>
 
-			<footer class="flex flex-col justify-end">
+			<footer class="flex flex-col items-end justify-end">
 				<div class="text-right">
+					<div>
+						<Select size='sm' class="bg-gray-200 mr-2" items={currency} bind:value={$invoiceInfo.currency} />
+					</div>
 					<p class="text-lg font-semibold mb-2">Total: {$productsTotal?.invoiceTotal}</p>
 				</div>
 			</footer>

@@ -12,7 +12,8 @@ export const invoiceInfo = writable({
     invoiceNumber: '',
     // invoiceID: '', // This I'm going to generate using the [userNameInitials]-[invoiceNumber]-[a random string containing 2 letters and 8 numbers]
     issueDate: '',
-    dueDate: ''
+    dueDate: '',
+    currency: 'usd',
 })
 
 export const fileName = derived(
@@ -41,7 +42,6 @@ export const invoiceProducts = writable<Product[]>([
         id: 0,
         specification: '',
         quantity: '',
-        currency: 'usd',
         unitPrice: '',
         tax:'',
     },
