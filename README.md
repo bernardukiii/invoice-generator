@@ -1,38 +1,24 @@
-# create-svelte
+<h1>BDKI Invoice Generator</h1>
+<h3>Predefined template to generate and download an invoice in PDF format</h3>
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+<p>Stack</p>
+<ol>
+    <li>PNPM</li>
+    <li>Svelte</li>
+    <li>TypeScript (config files are in JavaScript for some reason I do not remember)</li>
+    <li>TailwindCSS/Flowbite (like Chakra UI but for Svelte)</li>
+</ol>
 
-## Creating a project
+<h4>Aditional notes</h4>
+<p>
+    Used html native elements for the main part and went migrating some of them, like input fields and the select field, to Flowbite components for better UX. 
+    <br></br>
+    I opted for Flowbite because I'm new to Svelte, this is my first Svelte project, and wanted to simplify the styling process but get a more consisten 'professional' feel while I was at it.
+</p>
 
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+<h4>PD:</h4>
+<p>
+    Feel free to clone this to use as a starting point.
+    <br></br>
+    If you would like to contribute, open an issue and PR with the issue number in the title of said PR.
+</p>
