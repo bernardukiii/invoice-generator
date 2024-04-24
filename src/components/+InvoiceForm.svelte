@@ -83,7 +83,7 @@
 							<Input size='sm' type="text" placeholder="Private/Company name" class='mb-2' bind:value={$clientInfo.companyName} />
 							<div class='flex mb-2'>
 								<Input size='sm' type="text" placeholder="Street address" class="w-3/4" bind:value={$clientInfo.streetAddress} />
-								<Input size='sm' type="text" placeholder="P.C." class="w-1/4 ml-2" bind:value={$clientInfo.streetAddress} />
+								<Input size='sm' type="text" placeholder="P.C." class="w-1/4 ml-2" bind:value={$clientInfo.postalCode} />
 							</div>
 							<Input size='sm' type="text" placeholder="City" class="mb-2" bind:value={$clientInfo.city} />
 							<Input size='sm' type="text" placeholder="Country" class="mb-2" bind:value={$clientInfo.country} />
