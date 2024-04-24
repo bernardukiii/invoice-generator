@@ -63,7 +63,7 @@
             </Button>
         </div>
         {:else}  
-        <Button class="bg-green-500 p-2" on:click={togglePreview}>Preview invoice</Button>
+        <Button class="bg-green-500" on:click={togglePreview}>Preview invoice</Button>
         {/if}
     </div>
 </main>
