@@ -24,8 +24,11 @@ export const fileName = derived(
             const inputDate = $invoiceInfo.issueDate
             const date = new Date(inputDate)
             let monthName = month[date.getMonth()]
-            
-            return monthName
+
+            if (monthName != '') {
+                const pdfName = monthName + 'Invoice.pdf'
+                return pdfName
+            }
             
         } else {
             console.error('Error handling date', $invoiceInfo.issueDate)

@@ -1,4 +1,5 @@
 <script>
+    import { fileName } from "../stores";
     import InvoiceForm from "../components/+InvoiceForm.svelte"
     import InvoicePreview from "../components/+InvoicePreview.svelte"
     import { jsPDF } from 'jspdf'
@@ -12,6 +13,7 @@
     }
 
 	const convertToPDF = () => {
+        console.log('month', $fileName)
         const invoice = document.getElementById('bdki-complete-invoice')
 		if (invoice) {
             html2canvas(invoice).then(canvas => {
@@ -23,7 +25,7 @@
                 const imgHeight = canvas.height * scaleFactor;
 
                 pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight)
-                pdf.save("MonthInvoice.pdf")
+                pdf.save($fileName)
             }).catch(error => {
                 console.error('Error converting to PDF:', error)
             });
