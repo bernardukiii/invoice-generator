@@ -232,7 +232,7 @@
 					{/each}
 				</table>
 
-				<div class="flex justify-end items-center">
+				<div class="flex justify-center items-center">
 					<Button on:click={handleAddProduct} color='blue' >
 						<p>
 							Add product/service
