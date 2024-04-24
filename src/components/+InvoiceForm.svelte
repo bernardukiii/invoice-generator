@@ -13,8 +13,6 @@
 				return product
 			})
 		})
-
-		console.log('should be the updated object', $invoiceProducts)
 	}
 	
 	const handleAddProduct = () => {
