@@ -1,20 +1,20 @@
 <script>
-	import { clientInfo, invoiceInfo, invoiceProducts, productsTotal } from '../stores'
+	import {senderInfo, clientInfo, invoiceInfo, invoiceProducts, productsTotal } from '../stores'
 </script>
 
 <div class="container mx-auto m-4 w-[45vw]">
 	<div id="bdki-complete-invoice" class="w-full p-8 bg-white rounded-lg overflow-hidden">
 		<header class="flex justify-between mb-4">
 			<div>
-				<h1 class="text-2xl font-normal mb-2">Bernardo Camilo Ferrari</h1>
+				<h1 class="text-2xl font-normal mb-2">{$senderInfo.userName}</h1>
 
 				<div>
-					<h2 class="text-lg font-semibold">Contact details:</h2>
+					<h2 class="text-lg font-semibold mb-2">Contact details:</h2>
 
 					<div>
-						<p>Mariano Moreno 960, Ing. Maschwitz</p>
-						<p>1623 Buenos Aires, Argentina</p>
-						<p>bdki.development@gmail.com</p>
+						<p class="mb-px">{$senderInfo.streetAddress}</p>
+						<p class="mb-px">{$senderInfo.city}, { $senderInfo.country}</p>
+						<p class="mb-px">{$senderInfo.userEmail}</p>
 					</div>
 				</div>
 			</div>
@@ -22,21 +22,21 @@
 			<div class="flex flex-col">
 				<div class="flex justify-end mb-2">
 					<div>
-						<h2 class="text-lg font-semibold">Client details</h2>
+						<h2 class="text-lg font-semibold mb-2">Client details</h2>
 						<div class="flex flex-col">
-							<div>
+							<div class="mb-px">
 								<h4 class="font-semibold">Company name:</h4>
                                 <p>{$clientInfo.companyName}</p>
 							</div>
-							<div>
-								<h4 class="font-semibold">Street adress:</h4>
-                                <p>{$clientInfo.streetAdress}</p>
+							<div class="mb-px">
+								<h4 class="font-semibold">Street address:</h4>
+                                <p>{$clientInfo.streetAddress}</p>
 							</div>
-							<div>
+							<div class="mb-px">
 								<h4 class="font-semibold">Provice & country:</h4>
-                                <p>{$clientInfo.location}</p>
+                                <p>{$clientInfo.city}, {$clientInfo.country}</p>
 							</div>
-							<div>
+							<div class="mb-px">
 								<h4 class="font-semibold">Representative email:</h4>
                                 <p>{$clientInfo.representativeEmail}</p>
 							</div>
@@ -48,13 +48,13 @@
 
 		<div>
 			<div class="flex justify-between px-4 mb-8">
-				<div class="flex flex-col">
-					<div class="w-full flex flex-col items-end">
-						<div class="flex">
+				<div class="flex">
+					<div class="w-full flex items-center justify-center">
+						<div class="flex justify-start items-start mr-2">
 							<h4 class="mr-2 font-semibold">Issue date:</h4>
 							<p>{$invoiceInfo.issueDate}</p>
 						</div>
-						<div class="flex">
+						<div class="flex justify-start items-start ml-2">
 							<h4 class="mr-2 font-semibold">Due by:</h4>
 							<p>{$invoiceInfo.dueDate}</p>
 						</div>
@@ -82,38 +82,40 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td class="border px-4 py-2 max-w-12">
+							<td class="border px-4 py-2 max-w-12 break-words">
 								<div>
 									<p class="max-w-full" >{product.specification}</p>
 								</div>
 							</td>
-							<td class="max-w-6 border px-4 py-2 items-center">
+							<td class="w-6 border px-4 py-2 items-center">
 								<div class="flex justify-center items-center">
 									<p class="max-w-[50%] text-center">{product.quantity}</p>
 								</div>
 							</td>
-							<td class="border px-4 py-2 max-w-20">
+							<td class="border px-4 py-2 w-28 break-words">
 								<div class="flex justify-center items-center">
-									{#if product.currency === 'usd'}
+									{#if $invoiceInfo.currency === 'usd'}
 										<span>$</span>
-									{:else if product.currency === 'eur'}
+									{:else if $invoiceInfo.currency === 'eur'}
 										<span>€</span>
 									{/if}
-									<p class="max-w-[70%] text-center" >{product.unitPrice}</p>
+									<p class="max-w-[70%] break-words text-center" >{product.unitPrice}</p>
 								</div>
 							</td>
-							<td class="border px-4 py-2 max-w-20">
+							<td class="border px-4 py-2 w-28 break-words">
 								<div class="flex justify-center items-center">
 									<p class="max-w-[70%] text-center">{product.tax}%</p>
 								</div>
 							</td>
 							<td class="border px-4 py-2">
-								{#if product.currency === 'usd'}
-									<span>$</span>
-								{:else if product.currency === 'eur'}
-									<span>€</span>
-								{/if}
-								<p>{$productsTotal?.productsFullPrices[index]}</p>
+								<div class="flex justify-center items-center">
+									{#if $invoiceInfo.currency === 'usd'}
+										<span>$</span>
+									{:else if $invoiceInfo.currency === 'eur'}
+										<span>€</span>
+									{/if}
+									<p class="inline">{$productsTotal?.productsFullPrices[index]}</p>
+								</div>
 							</td>
 						</tr>
 					</tbody>
@@ -122,8 +124,14 @@
 		</section>
 
 		<footer class="flex flex-col justify-end">
-			<div class="text-right">
-				<p class="text-lg font-semibold mb-2">Total: {$productsTotal?.invoiceTotal}</p>
+			<div class="flex justify-end items-center text-lg font-semibold mb-2">
+				<p class="mr-2">Total:</p>
+				{#if $invoiceInfo.currency === 'usd'}
+					<span>$</span>
+				{:else if $invoiceInfo.currency === 'eur'}
+					<span>€</span>
+				{/if}
+				<p class="inline">{$productsTotal?.invoiceTotal}</p>
 			</div>
 		</footer>
 	</div>
