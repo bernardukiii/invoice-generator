@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { clientInfo, invoiceInfo, invoiceProducts, productsTotal } from '../stores'
-	import { Button } from 'flowbite-svelte'
+	import { Button, Input, Select } from 'flowbite-svelte'
 	import { TrashBinOutline, PlusOutline } from 'flowbite-svelte-icons';
 	
 	// Update store
@@ -45,6 +45,12 @@
 			return currentProducts
 		})
 	}
+
+	// Select options
+	let currency = [
+    { value: 'usd', name: 'USD' },
+    { value: 'eur', name: 'EUR' },
+  ]
 </script>
 
 <div class="container mx-auto m-4 w-[45vw]">
@@ -72,7 +78,7 @@
 							<div>
 								<label class="flex flex-col">
 									Company name:
-									<input
+									<Input
 										type="text"
 										placeholder="Google"
 										class="bg-gray-200"
@@ -83,7 +89,7 @@
 							<div>
 								<label class="flex flex-col">
 									Street adress:
-									<input
+									<Input
 										type="text"
 										placeholder="10 Downing Street"
 										class="bg-gray-200"
@@ -94,7 +100,7 @@
 							<div>
 								<label class="flex flex-col">
 									Provice & country:
-									<input
+									<Input
 										type="text"
 										placeholder="Buenos Aires, Argentina"
 										class="bg-gray-200"
@@ -105,7 +111,7 @@
 							<div>
 								<label class="flex flex-col">
 									Representative email:
-									<input
+									<Input
 										type="email"
 										placeholder="john.doe@gmail.com"
 										class="bg-gray-200"
@@ -125,18 +131,18 @@
 					<div class="w-full flex flex-col items-end">
 						<div class="flex">
 							<p class="mr-2">Issue date:</p>
-							<input type="date" bind:value={$invoiceInfo.issueDate} />
+							<Input type="date" bind:value={$invoiceInfo.issueDate} />
 						</div>
 						<div class="flex">
 							<p>Due by:</p>
-							<input type="date" bind:value={$invoiceInfo.dueDate} />
+							<Input type="date" bind:value={$invoiceInfo.dueDate} />
 						</div>
 					</div>
 				</div>
 
 				<div class="flex items-center">
 					<h1 class="text-xl font-semibold mr-2">Invoice:</h1>
-					<input
+					<Input
 						class="w-1/2 text-gray-500 bg-gray-200"
 						placeholder="001"
 						type="text"
@@ -161,7 +167,7 @@
 							<tr>
 								<td class="border px-4 py-2 max-w-12">
 									<div>
-										<input
+										<Input
 											type="text"
 											placeholder="Front End Developer"
 											name="specification"
@@ -173,7 +179,7 @@
 								</td>
 								<td class="max-w-6 border px-4 py-2 items-center">
 									<div class="flex justify-center items-center">
-										<input
+										<Input
 											type="number"
 											min="0"
 											max="10"
@@ -187,11 +193,9 @@
 								</td>
 								<td class="border px-4 py-2 max-w-20">
 									<div class="flex justify-center items-center">
-										<select class="bg-gray-200 mr-2" bind:value={product.currency}>
-											<option value="usd">USD</option>
-											<option value="eur">EUR</option>
-										</select>
-										<input
+										<Select class="bg-gray-200 mr-2" items={currency} bind:value={product.currency} />
+											
+										<Input
 											type="number"
 											min="0"
 											placeholder="2.500"
@@ -204,7 +208,7 @@
 								</td>
 								<td class="border px-4 py-2 max-w-20">
 									<div class="flex justify-center items-center">
-										<input
+										<Input
 											type="number"
 											min="0"
 											max="50"
