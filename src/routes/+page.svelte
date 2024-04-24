@@ -1,12 +1,37 @@
 <script>
+    import { onMount } from "svelte";
     import InvoiceForm from "../components/+InvoiceForm.svelte"
     import InvoicePreview from "../components/+InvoicePreview.svelte"
+    import { jsPDF } from 'jspdf'
+    import html2canvas from "html2canvas"
+	
 
     let isPreview = $state(false)
 
     const togglePreview = () => {
         isPreview = !isPreview
     }
+
+	const convertToPDF = () => {
+        const invoice = document.getElementById('bdki-complete-invoice')
+		if (invoice) {
+            html2canvas(invoice).then(canvas => {
+                const imgData = canvas.toDataURL('image/png');
+                const pdf = new jsPDF();
+                const pdfWidth = pdf.internal.pageSize.getWidth();
+                const scaleFactor = pdfWidth / canvas.width;
+                const imgWidth = pdfWidth;
+                const imgHeight = canvas.height * scaleFactor;
+
+                pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+                pdf.save("MonthInvoice.pdf");
+            }).catch(error => {
+                console.error('Error converting to PDF:', error);
+            });
+        } else {
+            console.error('Invoice element not found.');
+        }
+	}
 </script>
 
 <main class="p-4 m-4">
@@ -23,7 +48,7 @@
         {#if isPreview} 
         <div>
             <button class="bg-blue-600 p-2" on:click={togglePreview}>Edit invoice</button>
-            <button class="bg-purple-500 p-2" on:click={togglePreview}>Print invoice</button>
+            <button class="bg-purple-500 p-2" on:click={convertToPDF}>Print invoice</button>
         </div>
         {:else}  
         <button class="bg-green-500 p-2" on:click={togglePreview}>Preview invoice</button>
