@@ -3,7 +3,7 @@
 </script>
 
 <div class="container mx-auto m-4 w-[45vw]">
-	<div id="bdki-complete-invoice" class="w-full p-8 bg-white rounded-lg shadow-md overflow-hidden">
+	<div id="bdki-complete-invoice" class="w-full p-8 bg-white rounded-lg overflow-hidden">
 		<header class="flex justify-between mb-4">
 			<div>
 				<h1 class="text-2xl font-normal mb-2">Bernardo Camilo Ferrari</h1>
