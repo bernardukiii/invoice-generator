@@ -56,7 +56,7 @@
 <div class="container mx-auto m-4 w-[45vw]">
 	<div class="w-full p-8 bg-white rounded-lg shadow-md overflow-hidden">
 		<header class="flex justify-between mb-4">
-			<div class="w-1/2">
+			<div class="w-1/2 mr-8">
 				<Input class='mb-4' placeholder='Full name: eg, John Doe' />
 
 				<div>
@@ -66,7 +66,7 @@
 						<Input class='mb-2' size='sm' placeholder='Private/Company name' bind:value={$senderInfo.userName} />
 						<div class='flex mb-2'>
 							<Input class='w-3/4' size='sm' placeholder='Street address' bind:value={$senderInfo.streetAddress} />
-							<Input class='w-1/4 ml-2' size='sm' placeholder='Postal code' bind:value={$senderInfo.postalCode} />
+							<Input class='w-1/4 ml-2' size='sm' placeholder='P. C.' bind:value={$senderInfo.postalCode} />
 						</div>
 						<Input class='mb-2' size='sm' placeholder='City' bind:value={$senderInfo.city} />
 						<Input class='mb-2' size='sm' placeholder='Country' bind:value={$senderInfo.country} />
@@ -75,13 +75,16 @@
 				</div>
 			</div>
 
-			<div class="flex flex-col">
-				<div class="flex justify-end mb-2">
-					<div>
+			<div class="w-1/2 flex flex-col ml-8">
+				<div class="flex mb-2">
+					<div class="w-full">
 						<h2 class="text-lg font-semibold mb-2">Client details:</h2>
-						<div class="flex flex-col">
+						<div class="flex flex-col w-full">
 							<Input size='sm' type="text" placeholder="Private/Company name" class='mb-2' bind:value={$clientInfo.companyName} />
-							<Input size='sm' type="text" placeholder="Street address" class="mb-2" bind:value={$clientInfo.streetAddress} />
+							<div class='flex mb-2'>
+								<Input size='sm' type="text" placeholder="Street address" class="w-3/4" bind:value={$clientInfo.streetAddress} />
+								<Input size='sm' type="text" placeholder="P.C." class="w-1/4 ml-2" bind:value={$clientInfo.streetAddress} />
+							</div>
 							<Input size='sm' type="text" placeholder="City" class="mb-2" bind:value={$clientInfo.city} />
 							<Input size='sm' type="text" placeholder="Country" class="mb-2" bind:value={$clientInfo.country} />
 							<Input size='sm' type="email" placeholder="Representative Email" class="mb-2" bind:value={$clientInfo.representativeEmail} />
@@ -92,7 +95,7 @@
 		</header>
 
 		<div>
-			<div class="flex justify-between px-4 mb-8">
+			<div class="flex justify-between mb-8">
 				<div class="flex justify-between">
 					<div class="flex flex-col justify-start items-start mr-2">
 						<Label class="mr-2 w-max">Issue date:</Label>

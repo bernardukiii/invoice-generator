@@ -13,6 +13,7 @@ export const senderInfo = writable({
 export const clientInfo = writable({
     companyName: '',
     streetAddress: '',
+    postalCode: '',
     city: '',
     country: '',
     representativeEmail: '',
