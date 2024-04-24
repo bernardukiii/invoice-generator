@@ -1,5 +1,4 @@
 <script>
-    import { onMount } from "svelte";
     import InvoiceForm from "../components/+InvoiceForm.svelte"
     import InvoicePreview from "../components/+InvoicePreview.svelte"
     import { jsPDF } from 'jspdf'
@@ -16,20 +15,20 @@
         const invoice = document.getElementById('bdki-complete-invoice')
 		if (invoice) {
             html2canvas(invoice).then(canvas => {
-                const imgData = canvas.toDataURL('image/png');
+                const imgData = canvas.toDataURL('image/png')
                 const pdf = new jsPDF();
-                const pdfWidth = pdf.internal.pageSize.getWidth();
+                const pdfWidth = pdf.internal.pageSize.getWidth()
                 const scaleFactor = pdfWidth / canvas.width;
                 const imgWidth = pdfWidth;
                 const imgHeight = canvas.height * scaleFactor;
 
-                pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
-                pdf.save("MonthInvoice.pdf");
+                pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight)
+                pdf.save("MonthInvoice.pdf")
             }).catch(error => {
-                console.error('Error converting to PDF:', error);
+                console.error('Error converting to PDF:', error)
             });
         } else {
-            console.error('Invoice element not found.');
+            console.error('Invoice element not found.')
         }
 	}
 </script>
