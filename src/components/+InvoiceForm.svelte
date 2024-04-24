@@ -79,6 +79,7 @@
 								<Label class="flex flex-col">
 									Company name:
 									<Input
+										size='sm'
 										type="text"
 										placeholder="Google"
 										class="bg-gray-200"
@@ -90,6 +91,7 @@
 								<Label class="flex flex-col">
 									Street adress:
 									<Input
+										size='sm'
 										type="text"
 										placeholder="10 Downing Street"
 										class="bg-gray-200"
@@ -101,6 +103,7 @@
 								<Label class="flex flex-col">
 									Provice & country:
 									<Input
+										size='sm'
 										type="text"
 										placeholder="Buenos Aires, Argentina"
 										class="bg-gray-200"
@@ -112,6 +115,7 @@
 								<Label class="flex flex-col">
 									Representative email:
 									<Input
+										size='sm'
 										type="email"
 										placeholder="john.doe@gmail.com"
 										class="bg-gray-200"
@@ -131,11 +135,19 @@
 					<div class="w-full flex flex-col items-end">
 						<div class="flex">
 							<Label class="mr-2">Issue date:</Label>
-							<Input type="date" bind:value={$invoiceInfo.issueDate} />
+							<Input
+								class='bg-gray-200'
+								size='sm' 
+								type="date" 
+								bind:value={$invoiceInfo.issueDate} />
 						</div>
 						<div class="flex">
 							<Label>Due by:</Label>
-							<Input type="date" bind:value={$invoiceInfo.dueDate} />
+							<Input
+								class='bg-gray-200'
+								size='sm' 
+								type="date" 
+								bind:value={$invoiceInfo.dueDate} />
 						</div>
 					</div>
 				</div>
@@ -143,6 +155,7 @@
 				<div class="flex items-center">
 					<Label class="text-xl font-semibold mr-2">Invoice:</Label>
 					<Input
+						size='sm'
 						class="w-1/2 text-gray-500 bg-gray-200"
 						placeholder="001"
 						type="text"
@@ -168,6 +181,7 @@
 								<td class="border px-4 py-2 max-w-12">
 									<div>
 										<Input
+											size='sm'
 											type="text"
 											placeholder="Front End Developer"
 											name="specification"
@@ -180,6 +194,7 @@
 								<td class="max-w-6 border px-4 py-2 items-center">
 									<div class="flex justify-center items-center">
 										<Input
+											size='sm'
 											type="number"
 											min="0"
 											max="10"
@@ -193,9 +208,10 @@
 								</td>
 								<td class="border px-4 py-2 max-w-20">
 									<div class="flex justify-center items-center">
-										<Select class="bg-gray-200 mr-2" items={currency} bind:value={product.currency} />
+										<Select size='sm' class="bg-gray-200 mr-2" items={currency} bind:value={product.currency} />
 											
 										<Input
+											size='sm'
 											type="number"
 											min="0"
 											placeholder="2.500"
@@ -209,6 +225,7 @@
 								<td class="border px-4 py-2 max-w-20">
 									<div class="flex justify-center items-center">
 										<Input
+											size='sm'
 											type="number"
 											min="0"
 											max="50"
