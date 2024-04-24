@@ -56,7 +56,7 @@
 <div class="container mx-auto m-4 w-[45vw]">
 	<div class="w-full p-8 bg-white rounded-lg shadow-md overflow-hidden">
 		<header class="flex justify-between mb-4">
-			<div>
+			<div class="w-1/2">
 				<Input class='mb-4' placeholder='Full name: eg, John Doe' />
 
 				<div>
@@ -64,7 +64,10 @@
 
 					<div>
 						<Input class='mb-2' size='sm' placeholder='Private/Company name' bind:value={$senderInfo.userName} />
-						<Input class='mb-2' size='sm' placeholder='Address' bind:value={$senderInfo.streetAddress} />
+						<div class='flex mb-2'>
+							<Input class='w-3/4' size='sm' placeholder='Street address' bind:value={$senderInfo.streetAddress} />
+							<Input class='w-1/4 ml-2' size='sm' placeholder='Postal code' bind:value={$senderInfo.postalCode} />
+						</div>
 						<Input class='mb-2' size='sm' placeholder='City' bind:value={$senderInfo.city} />
 						<Input class='mb-2' size='sm' placeholder='Country' bind:value={$senderInfo.country} />
 						<Input class='mb-2' size='sm' placeholder='E-mail' bind:value={$senderInfo.userEmail} />

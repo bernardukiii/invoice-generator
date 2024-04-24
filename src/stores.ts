@@ -5,6 +5,7 @@ export const senderInfo = writable({
     userName: '',
     streetAddress: '',
     city: '',
+    postalCode: '',
     country: '',
     userEmail: '',
 })

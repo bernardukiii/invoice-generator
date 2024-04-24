@@ -1,20 +1,20 @@
 <script>
-	import { clientInfo, invoiceInfo, invoiceProducts, productsTotal } from '../stores'
+	import {senderInfo, clientInfo, invoiceInfo, invoiceProducts, productsTotal } from '../stores'
 </script>
 
 <div class="container mx-auto m-4 w-[45vw]">
 	<div id="bdki-complete-invoice" class="w-full p-8 bg-white rounded-lg overflow-hidden">
 		<header class="flex justify-between mb-4">
 			<div>
-				<h1 class="text-2xl font-normal mb-2">Bernardo Camilo Ferrari</h1>
+				<h1 class="text-2xl font-normal mb-2">{$senderInfo.userName}</h1>
 
 				<div>
 					<h2 class="text-lg font-semibold">Contact details:</h2>
 
 					<div>
-						<p>Mariano Moreno 960, Ing. Maschwitz</p>
-						<p>1623 Buenos Aires, Argentina</p>
-						<p>bdki.development@gmail.com</p>
+						<p>{$senderInfo.streetAddress}</p>
+						<p>{$senderInfo.city}, { $senderInfo.country}</p>
+						<p>{$senderInfo.userEmail}</p>
 					</div>
 				</div>
 			</div>
