@@ -15,6 +15,24 @@ export const invoiceInfo = writable({
     dueDate: ''
 })
 
+export const fileName = derived(
+    invoiceInfo,
+    ($invoiceInfo) => {
+        if ($invoiceInfo.issueDate != '') {
+            const month = ["January","February","March","April","May","June","July","August","September","October","November","December"]
+
+            const inputDate = $invoiceInfo.issueDate
+            const date = new Date(inputDate)
+            let monthName = month[date.getMonth()]
+            
+            return monthName
+            
+        } else {
+            console.error('Error handling date', $invoiceInfo.issueDate)
+        }
+    }
+)
+
 export const invoiceProducts = writable<Product[]>([
     {
         id: 0,
