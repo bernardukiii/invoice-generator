@@ -18,7 +18,12 @@
             html2canvas(invoice).then(canvas => {
                 const imgData = canvas.toDataURL('image/png');
                 const pdf = new jsPDF();
-                pdf.addImage(imgData, 'PNG', 0, 0);
+                const pdfWidth = pdf.internal.pageSize.getWidth();
+                const scaleFactor = pdfWidth / canvas.width;
+                const imgWidth = pdfWidth;
+                const imgHeight = canvas.height * scaleFactor;
+
+                pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
                 pdf.save("MonthInvoice.pdf");
             }).catch(error => {
                 console.error('Error converting to PDF:', error);
