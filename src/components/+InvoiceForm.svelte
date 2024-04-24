@@ -1,5 +1,7 @@
 <script lang="ts">
 	import { clientInfo, invoiceInfo, invoiceProducts, productsTotal } from '../stores'
+	import { Button } from 'flowbite-svelte'
+	import { TrashBinOutline, PlusOutline } from 'flowbite-svelte-icons';
 	
 	// Update store
 	const updateInvoiceProducts = (productID: number, fieldName: string) => (e: Event) => {
@@ -222,10 +224,8 @@
 									{/if}
 									<span>{$productsTotal.productsFullPrices[index]}</span>
 								</td>
-								<td class="px-4 py-2">
-									<div>
-										<button on:click={() => handleRemoveProduct(index)} class="bg-red-400 text-white p-2" >Remove</button>
-									</div>
+								<td class="flex justify-center items-center py-4">
+									<Button on:click={() => handleRemoveProduct(index)} class="p-2" color='red' ><TrashBinOutline /></Button>
 								</td>
 							</tr>
 						</tbody>
@@ -233,7 +233,12 @@
 				</table>
 
 				<div class="flex justify-end items-center">
-					<button class="bg-blue-400 p-2" on:click={handleAddProduct}>Add product/service</button>
+					<Button on:click={handleAddProduct} color='blue' >
+						<p>
+							Add product/service
+						</p>
+						<PlusOutline />
+					</Button>
 				</div>
 			</section>
 

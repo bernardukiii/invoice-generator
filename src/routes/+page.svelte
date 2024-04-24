@@ -4,7 +4,8 @@
     import InvoicePreview from "../components/+InvoicePreview.svelte"
     import { jsPDF } from 'jspdf'
     import html2canvas from "html2canvas"
-	
+    import { Button } from 'flowbite-svelte'
+    import { DownloadOutline, EditOutline } from "flowbite-svelte-icons";
 
     let isPreview = $state(false)
 
@@ -45,14 +46,24 @@
         <svelte:component this={isPreview ? InvoicePreview : InvoiceForm } />
     </section>
  
-    <div class="flex justify-center items-center">
+    <div class="flex justify-end items-center">
         {#if isPreview} 
-        <div>
-            <button class="bg-blue-600 p-2" on:click={togglePreview}>Edit invoice</button>
-            <button class="bg-purple-500 p-2" on:click={convertToPDF}>Print invoice</button>
+        <div class="w-full flex justify-between items-center">
+            <Button color='blue' on:click={togglePreview} class='flex justify-between items-center'>
+                <p class="mr-2">
+                    Edit
+                </p> 
+                <EditOutline />
+            </Button>
+            <Button color='purple' class='flex justify-between items-center' on:click={convertToPDF}>
+                <p class="mr-2">
+                    Download
+                </p> 
+                <DownloadOutline />
+            </Button>
         </div>
         {:else}  
-        <button class="bg-green-500 p-2" on:click={togglePreview}>Preview invoice</button>
+        <Button class="bg-green-500 p-2" on:click={togglePreview}>Preview invoice</Button>
         {/if}
     </div>
 </main>
