@@ -1,13 +1,15 @@
 <script>
-    import { fileName } from "../stores";
+    import { onMount } from "svelte"
+    import { fileName } from "../stores"
     import InvoiceForm from "../components/+InvoiceForm.svelte"
     import InvoicePreview from "../components/+InvoicePreview.svelte"
     import { jsPDF } from 'jspdf'
     import html2canvas from "html2canvas"
     import { Button } from 'flowbite-svelte'
-    import { DownloadOutline, EditOutline } from "flowbite-svelte-icons";
+    import { DownloadOutline, EditOutline } from "flowbite-svelte-icons"
 
     let isPreview = $state(false)
+    let isMobile = $state(false)
 
     const togglePreview = () => {
         isPreview = !isPreview
@@ -34,6 +36,18 @@
             console.error('Invoice element not found.')
         }
 	}
+
+    const checkIsMobile = () => {
+        const screenW = window.screen.width
+
+        if (screenW <= 768) {
+            isMobile = true
+        }
+    }
+
+    onMount(() => {
+        checkIsMobile()
+    })
 </script>
 
 <main class="p-4 m-4">
