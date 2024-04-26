@@ -62,11 +62,22 @@
             </Alert>
         </section>
         {:else}
-            <section class="w-full">
+            <section class="w-full hidden
+                            2xl:block
+                            xl:block
+                            lg:block
+                            md:block
+            ">
                 <svelte:component this={isPreview ? InvoicePreview : InvoiceForm } />
             </section>
         
-            <div class="flex justify-end items-center">
+            <div class="hidden justify-end items-center
+                        2xl:flex
+                        xl:flex
+                        lg:flex
+                        md:flex
+            
+            ">
                 {#if isPreview} 
                     <div class="w-full flex justify-between items-center">
                         <Button color='blue' on:click={togglePreview} class='flex justify-between items-center'>
