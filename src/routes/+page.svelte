@@ -6,7 +6,7 @@
     import { jsPDF } from 'jspdf'
     import html2canvas from "html2canvas"
     import { Button, Alert } from 'flowbite-svelte'
-    import { DownloadOutline, EditOutline, InfoCircleSolid, EyeSolid } from "flowbite-svelte-icons"
+    import { DownloadOutline, EditOutline, InfoCircleSolid } from "flowbite-svelte-icons"
 
     let isPreview = $state(false)
     let isMobile = $state(false)
