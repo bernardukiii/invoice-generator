@@ -59,11 +59,7 @@
 >
 	<div class="w-full p-8 bg-white rounded-lg shadow-md overflow-hidden">
 		<header class="flex justify-between mb-4">
-			<div class="w-1/2 mr-8
-			
-			
-			"
-			>
+			<div class="w-1/2 mr-8">
 				<Input class='mb-4' placeholder='Full name: eg, John Doe' />
 
 				<div>
