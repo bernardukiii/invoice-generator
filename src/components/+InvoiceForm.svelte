@@ -48,12 +48,15 @@
 
 	// Select options
 	let currency = [
-    { value: 'usd', name: 'USD (United States)' },
-    { value: 'eur', name: 'EUR (European Union)' },
-  ]
+		{ value: 'usd', name: 'USD (United States)' },
+		{ value: 'eur', name: 'EUR (European Union)' },
+  	]
 </script>
 
-<div class="container mx-auto m-4 w-[45vw]">
+<div class="container mx-auto m-4 w-[45vw]
+			md:w-full
+	"	
+>
 	<div class="w-full p-8 bg-white rounded-lg shadow-md overflow-hidden">
 		<header class="flex justify-between mb-4">
 			<div class="w-1/2 mr-8">

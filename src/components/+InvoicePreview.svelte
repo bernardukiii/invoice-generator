@@ -2,7 +2,10 @@
 	import {senderInfo, clientInfo, invoiceInfo, invoiceProducts, productsTotal } from '../stores'
 </script>
 
-<div class="container mx-auto m-4 w-[45vw]">
+<div class="container mx-auto m-4 w-[45vw]
+			md:w-full
+		"
+>
 	<div id="bdki-complete-invoice" class="w-full p-8 bg-white rounded-lg overflow-hidden">
 		<header class="flex justify-between mb-4">
 			<div>
