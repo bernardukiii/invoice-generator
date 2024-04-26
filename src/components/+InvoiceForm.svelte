@@ -48,9 +48,9 @@
 
 	// Select options
 	let currency = [
-    { value: 'usd', name: 'USD (United States)' },
-    { value: 'eur', name: 'EUR (European Union)' },
-  ]
+		{ value: 'usd', name: 'USD (United States)' },
+		{ value: 'eur', name: 'EUR (European Union)' },
+  	]
 </script>
 
 <div class="container mx-auto m-4 w-[45vw]">

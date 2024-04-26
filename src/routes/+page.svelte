@@ -40,7 +40,7 @@
     const checkIsMobile = () => {
         const screenW = window.screen.width
 
-        if (screenW <= 768) {
+        if (screenW < 768) {
             isMobile = true
         }
     }
