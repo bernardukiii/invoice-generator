@@ -13,7 +13,8 @@
 
 					<div>
 						<p class="mb-px">{$senderInfo.streetAddress}</p>
-						<p class="mb-px">{$senderInfo.city}, { $senderInfo.country}</p>
+						<p class="mb-px">
+							{$senderInfo.city}{$senderInfo.city != '' && $senderInfo.country != '' ? ',' : ''} { $senderInfo.country}</p>
 						<p class="mb-px">{$senderInfo.userEmail}</p>
 					</div>
 				</div>

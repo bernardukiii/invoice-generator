@@ -1,13 +1,15 @@
 <script>
-    import { fileName } from "../stores";
+    import { onMount } from "svelte"
+    import { fileName } from "../stores"
     import InvoiceForm from "../components/+InvoiceForm.svelte"
     import InvoicePreview from "../components/+InvoicePreview.svelte"
     import { jsPDF } from 'jspdf'
     import html2canvas from "html2canvas"
-    import { Button } from 'flowbite-svelte'
-    import { DownloadOutline, EditOutline } from "flowbite-svelte-icons";
+    import { Button, Alert } from 'flowbite-svelte'
+    import { DownloadOutline, EditOutline, InfoCircleSolid } from "flowbite-svelte-icons"
 
     let isPreview = $state(false)
+    let isMobile = $state(false)
 
     const togglePreview = () => {
         isPreview = !isPreview
@@ -34,31 +36,66 @@
             console.error('Invoice element not found.')
         }
 	}
+
+    const checkIsMobile = () => {
+        const screenW = window.screen.width
+
+        if (screenW <= 768) {
+            isMobile = true
+        }
+    }
+
+    onMount(() => {
+        checkIsMobile()
+    })
 </script>
 
 <main class="p-4 m-4">
-    <section class="w-full">
-        <svelte:component this={isPreview ? InvoicePreview : InvoiceForm } />
-    </section>
- 
-    <div class="flex justify-end items-center">
-        {#if isPreview} 
-        <div class="w-full flex justify-between items-center">
-            <Button color='blue' on:click={togglePreview} class='flex justify-between items-center'>
-                <p class="mr-2">
-                    Edit
-                </p> 
-                <EditOutline />
-            </Button>
-            <Button color='purple' class='flex justify-between items-center' on:click={convertToPDF}>
-                <p class="mr-2">
-                    Download
-                </p> 
-                <DownloadOutline />
-            </Button>
-        </div>
-        {:else}  
-        <Button class="bg-green-500" on:click={togglePreview}>Preview invoice</Button>
-        {/if}
-    </div>
+    {#if isMobile}
+        <section class="h-screen flex justify-center items-center">    
+            <Alert color='red'>
+                <div class="flex items-center gap-3">
+                    <InfoCircleSolid class="w-5 h-5" />
+                    <span class="text-xl font-medium">This app is not available for MOBILE devices</span>
+                </div>
+                <p class="mt-2 mb-4 text-lg">We consider this app will mostly be used with larger devices such as TABLETS and LAPTOPS/COMPUTERS.</p>
+            </Alert>
+        </section>
+        {:else}
+            <section class="w-full hidden
+                            2xl:block
+                            xl:block
+                            lg:block
+                            md:block
+            ">
+                <svelte:component this={isPreview ? InvoicePreview : InvoiceForm } />
+            </section>
+        
+            <div class="hidden justify-end items-center
+                        2xl:flex
+                        xl:flex
+                        lg:flex
+                        md:flex
+            
+            ">
+                {#if isPreview} 
+                    <div class="w-full flex justify-between items-center">
+                        <Button color='blue' on:click={togglePreview} class='flex justify-between items-center'>
+                            <p class="mr-2">
+                                Edit
+                            </p> 
+                            <EditOutline />
+                        </Button>
+                        <Button color='purple' class='flex justify-between items-center' on:click={convertToPDF}>
+                            <p class="mr-2">
+                                Download
+                            </p> 
+                            <DownloadOutline />
+                        </Button>
+                    </div>
+                    {:else}  
+                    <Button class="bg-green-500" on:click={togglePreview}>Preview invoice</Button>
+                {/if}
+            </div>
+    {/if}
 </main>
